@@ -7,28 +7,34 @@
 //
 
 import ObjectMapper
+import RealmSwift
+import ObjectMapper_Realm
 
-class Weather: Mappable {
-    var coord: Coord?
-    var weather: [WeatherInner]?
-    var base: String?
-    var main: Main?
-    var visibility: String?
-    var wind: Wind?
-    var clouds: Clouds?
+class Weather: Object, Mappable {
+    @objc dynamic var coord: Coord?
+    var weather: List<WeatherInner>?
+    @objc dynamic var base: String?
+    @objc dynamic var main: Main?
+    @objc dynamic var visibility: String?
+    @objc dynamic var wind: Wind?
+    @objc dynamic var clouds: Clouds?
     var dt: CLong?
-    var sys: Sys?
+    @objc dynamic var sys: Sys?
     var id: Int?
-    var name: String?
+    @objc dynamic var name: String?
     var cod: Int?
     
-    required init?(map: Map) {
-        
+    override class func primaryKey() -> String? {
+        return "id"
+    }
+    
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
         coord <- map["coord"]
-        weather <- map["weather"]
+        weather <- (map["weather"], ListTransform<WeatherInner>())
         base <- map["base"]
         main <- map["main"]
         visibility <- map["visibility"]
@@ -41,12 +47,12 @@ class Weather: Mappable {
     }
 }
 
-class Coord: Mappable {
+class Coord: Object, Mappable {
     var lon: Double?
     var lat: Double?
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
@@ -55,33 +61,33 @@ class Coord: Mappable {
     }
 }
 
-class WeatherInner: Mappable {
+class WeatherInner: Object, Mappable {
     var id: Int?
-    var main: String?
-    var description: String?
-    var icon: String?
+    @objc dynamic var main: String?
+    @objc dynamic var descriptionString: String?
+    @objc dynamic var icon: String?
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
         id <- map["id"]
         main <- map["main"]
-        description <- map["description"]
+        descriptionString <- map["description"]
         icon <- map["icon"]
     }
 }
 
-class Main: Mappable {
+class Main: Object, Mappable {
     var temp: Double?
     var pressure: Double?
     var humidity: Double?
     var tempMin: Double?
     var tempMax: Double?
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
@@ -93,12 +99,12 @@ class Main: Mappable {
     }
 }
 
-class Wind: Mappable {
+class Wind: Object, Mappable {
     var speed: Double?
     var deg: Double?
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
@@ -107,11 +113,11 @@ class Wind: Mappable {
     }
 }
 
-class Clouds: Mappable {
+class Clouds: Object, Mappable {
     var all: Double?
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {
@@ -119,7 +125,7 @@ class Clouds: Mappable {
     }
 }
 
-class Sys: Mappable {
+class Sys: Object, Mappable {
     var type: Int?
     var id: Int?
     var message: Double?
@@ -127,8 +133,8 @@ class Sys: Mappable {
     var sunrise: CLong?
     var sunset: CLong?
     
-    required init?(map: Map) {
-        
+    required convenience init?(map: Map) {
+        self.init()
     }
     
     func mapping(map: Map) {

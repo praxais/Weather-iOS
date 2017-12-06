@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import RealmSwift
 
 class HomeInteractor {
 	// MARK: Properties
@@ -26,10 +27,18 @@ extension HomeInteractor: HomeInteractorInput {
     func getWeather(latitude: Double, longitude: Double) {
         service.getWeather(latitude: latitude, longitude: longitude, success: {
             (weather) in
+            self.saveWeatherToDb(weather: weather)
             self.output?.onSuccess(weather: weather)
         }, failure: {
             (failure) in
             self.output?.onFailure(error: failure)
         })
+    }
+    
+    private func saveWeatherToDb(weather: Weather){
+        let realm = try! Realm()
+        try! realm.write {
+            realm.add(weather, update: true)
+        }
     }
 }

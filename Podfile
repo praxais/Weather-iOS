@@ -9,6 +9,7 @@ target 'Weather' do
   pod 'Alamofire', '~> 4.5'
   pod 'AlamofireImage', '~> 3.3'
   pod 'AlamofireObjectMapper', '~> 5.0'
+  pod "ObjectMapper+Realm"
   pod 'RealmSwift'
   pod 'PKHUD', '~> 5.0'
 end
