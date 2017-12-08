@@ -13,23 +13,23 @@ import ObjectMapper_Realm
 class Weather: Object, Mappable {
     @objc dynamic var coord: Coord?
     var weather: List<WeatherInner>?
-    @objc dynamic var base: String?
+    @objc dynamic var base: String = ""
     @objc dynamic var main: Main?
-    @objc dynamic var visibility: String?
+    @objc dynamic var visibility: String = ""
     @objc dynamic var wind: Wind?
     @objc dynamic var clouds: Clouds?
-    var dt: CLong?
+    @objc dynamic var dt: Int = 0
     @objc dynamic var sys: Sys?
-    var id: Int?
-    @objc dynamic var name: String?
-    var cod: Int?
-    
-    override class func primaryKey() -> String? {
-        return "id"
-    }
+    @objc dynamic var id: Int = 0
+    @objc dynamic var name: String = ""
+    @objc dynamic var cod: Int = 0
     
     required convenience init?(map: Map) {
         self.init()
+    }
+    
+    override class func primaryKey() -> String? {
+        return "id"
     }
     
     func mapping(map: Map) {
@@ -48,8 +48,8 @@ class Weather: Object, Mappable {
 }
 
 class Coord: Object, Mappable {
-    var lon: Double?
-    var lat: Double?
+    @objc dynamic var lon: Double = 0.0
+    @objc dynamic var lat: Double = 0.0
     
     required convenience init?(map: Map) {
         self.init()
@@ -62,10 +62,10 @@ class Coord: Object, Mappable {
 }
 
 class WeatherInner: Object, Mappable {
-    var id: Int?
-    @objc dynamic var main: String?
-    @objc dynamic var descriptionString: String?
-    @objc dynamic var icon: String?
+    @objc dynamic var id: String = ""
+    @objc dynamic var main: String = ""
+    @objc dynamic var descriptionString: String = ""
+    @objc dynamic var icon: String = ""
     
     required convenience init?(map: Map) {
         self.init()
@@ -80,11 +80,11 @@ class WeatherInner: Object, Mappable {
 }
 
 class Main: Object, Mappable {
-    var temp: Double?
-    var pressure: Double?
-    var humidity: Double?
-    var tempMin: Double?
-    var tempMax: Double?
+    @objc dynamic var temp: Double = 0.0
+    @objc dynamic var pressure: Double = 0.0
+    @objc dynamic var humidity: Double = 0.0
+    @objc dynamic var tempMin: Double = 0.0
+    @objc dynamic var tempMax: Double = 0.0
     
     required convenience init?(map: Map) {
         self.init()
@@ -100,8 +100,8 @@ class Main: Object, Mappable {
 }
 
 class Wind: Object, Mappable {
-    var speed: Double?
-    var deg: Double?
+    @objc dynamic var speed: Double = 0.0
+    @objc dynamic var deg: Double = 0.0
     
     required convenience init?(map: Map) {
         self.init()
@@ -114,7 +114,7 @@ class Wind: Object, Mappable {
 }
 
 class Clouds: Object, Mappable {
-    var all: Double?
+    @objc dynamic var all: Double = 0.0
     
     required convenience init?(map: Map) {
         self.init()
@@ -126,12 +126,12 @@ class Clouds: Object, Mappable {
 }
 
 class Sys: Object, Mappable {
-    var type: Int?
-    var id: Int?
-    var message: Double?
-    var country: String?
-    var sunrise: CLong?
-    var sunset: CLong?
+    @objc dynamic var type: Int = 0
+    @objc dynamic var id: Int = 0
+    @objc dynamic var message: Double = 0.0
+    @objc dynamic  var country: String = ""
+    @objc dynamic var sunrise: Int = 0
+    @objc dynamic  var sunset: Int = 0
     
     required convenience init?(map: Map) {
         self.init()

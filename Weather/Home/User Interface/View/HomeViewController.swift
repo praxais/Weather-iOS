@@ -60,11 +60,7 @@ extension HomeViewController: HomeViewInterface {
     
     func populateData(data: Weather) {
         cityLabel.text = data.name
-        if let weatherAll = data.weather {
-            for weatherOne in weatherAll {
-                weatherLabel.text = weatherOne.main
-            }
-        }
+        weatherLabel.text = data.weather![0].main
         tempLabel.text = "\(data.main?.temp ?? 0)"
     }
     
