@@ -15,24 +15,32 @@ class HomePresenter {
     var wireframe: HomeWireframe?
 
     // MARK: Converting entities
+    private var latitude = 0.0
+    private var longitude = 0.0
 }
 
  // MARK: Home module interface
 extension HomePresenter: HomeModuleInterface {
     func getWeather(latitude: Double, longitude: Double) {
         self.view?.showLoading()
+        self.latitude = latitude
+        self.longitude = longitude
         interactor?.getWeather(latitude: latitude, longitude: longitude)
     }
 }
 
 // MARK: Home interactor output interface
 extension HomePresenter: HomeInteractorOutput {
-    func onSuccess(weather: Weather) {
-        view?.hideLoading()
+    func onWeatherSuccess(weather: Weather) {
         let realm = try! Realm()
         let weatherFromDb: Weather = realm.objects(Weather.self).first!
         print("Xais: \(String(describing: weatherFromDb.id))")
         view?.populateData(data: weather)
+    }
+    
+    func onForcastSuccess(forcast: [ListModel]) {
+        interactor?.getForcast(latitude: latitude, longitude: longitude)
+        view?.hideLoading()
     }
     
     func onFailure(error: String) {

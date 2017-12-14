@@ -28,7 +28,7 @@ extension HomeInteractor: HomeInteractorInput {
         service.getWeather(latitude: latitude, longitude: longitude, success: {
             (weather) in
             self.saveWeatherToDb(weather: weather)
-            self.output?.onSuccess(weather: weather)
+            self.output?.onWeatherSuccess(weather: weather)
         }, failure: {
             (failure) in
             self.output?.onFailure(error: failure)

@@ -8,10 +8,14 @@
 
 protocol HomeInteractorInput: class {
     func getWeather(latitude: Double, longitude: Double)
+    
+    func getForcast(latitude: Double, longitude: Double)
 }
 
 protocol HomeInteractorOutput: class {
-    func onSuccess(weather: Weather)
+    func onWeatherSuccess(weather: Weather)
+    
+    func onForcastSuccess(forcast: [ListModel])
     
     func onFailure(error: String)
 }

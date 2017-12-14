@@ -29,4 +29,18 @@ class HomeService: HomeServiceType {
                 }
         }
     }
+    
+    func getForcast(latitude: Double, longitude: Double, success: @escaping ([ListModel]) -> (), failure: @escaping (String) -> ()) {
+        Alamofire.request(getUrl(latitude: latitude, longitude: longitude), method: .get)
+            .responseObject{(response: DataResponse<WeatherForcast>) in
+                switch response.result {
+                case .success:
+                    success(response.result.value!.list!)
+                    break
+                case .failure:
+                    failure(response.error.debugDescription)
+                    break
+                }
+        }
+    }
 }

@@ -10,4 +10,6 @@ import Foundation
 
 protocol HomeServiceType: class {
     func getWeather(latitude: Double, longitude: Double, success: @escaping(Weather) -> (), failure: @escaping(String) -> ())
+    
+    func getForcast(latitude: Double, longitude: Double, success: @escaping([ListModel]) -> (), failure: @escaping(String) -> ())
 }
