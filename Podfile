@@ -12,4 +12,7 @@ target 'Weather' do
   pod "ObjectMapper+Realm"
   pod 'RealmSwift'
   pod 'PKHUD', '~> 5.0'
+  pod 'GooglePlaces'
+  pod 'GooglePlacePicker'
+  pod 'GoogleMaps'
 end

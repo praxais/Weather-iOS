@@ -23,6 +23,8 @@
 		0A4CE9C71FD56A0E0035DA7C /* HomeViewInterface.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CE9BC1FD56A0E0035DA7C /* HomeViewInterface.swift */; };
 		0A4CE9C91FD56AD30035DA7C /* WireframeInput.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CE9C81FD56AD30035DA7C /* WireframeInput.swift */; };
 		0A4CE9CB1FD570680035DA7C /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4CE9CA1FD570680035DA7C /* MainViewController.swift */; };
+		0A4D17031FE2725C00960459 /* WeatherForcast.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D17021FE2725C00960459 /* WeatherForcast.swift */; };
+		0A4D17071FE2886300960459 /* HomeCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A4D17061FE2886300960459 /* HomeCollectionViewCell.swift */; };
 		0A85F6941FD67983004B9DB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A85F6931FD67983004B9DB4 /* Main.storyboard */; };
 		0A85F6971FD67E3E004B9DB4 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A85F6961FD67E3E004B9DB4 /* ApiConstants.swift */; };
 		0A85F69A1FD67FD1004B9DB4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A85F6991FD67FD1004B9DB4 /* Weather.swift */; };
@@ -48,6 +50,8 @@
 		0A4CE9BC1FD56A0E0035DA7C /* HomeViewInterface.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HomeViewInterface.swift; sourceTree = "<group>"; };
 		0A4CE9C81FD56AD30035DA7C /* WireframeInput.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WireframeInput.swift; sourceTree = "<group>"; };
 		0A4CE9CA1FD570680035DA7C /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		0A4D17021FE2725C00960459 /* WeatherForcast.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WeatherForcast.swift; sourceTree = "<group>"; };
+		0A4D17061FE2886300960459 /* HomeCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeCollectionViewCell.swift; sourceTree = "<group>"; };
 		0A85F6931FD67983004B9DB4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A85F6961FD67E3E004B9DB4 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		0A85F6991FD67FD1004B9DB4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
@@ -189,6 +193,7 @@
 		0A4CE9B91FD56A0E0035DA7C /* ViewModels */ = {
 			isa = PBXGroup;
 			children = (
+				0A4D17061FE2886300960459 /* HomeCollectionViewCell.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -205,6 +210,7 @@
 			isa = PBXGroup;
 			children = (
 				0A85F6991FD67FD1004B9DB4 /* Weather.swift */,
+				0A4D17021FE2725C00960459 /* WeatherForcast.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -305,9 +311,14 @@
 			files = (
 			);
 			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Weather/Pods-Weather-resources.sh",
+				"${PODS_ROOT}/GoogleMaps/Maps/Frameworks/GoogleMaps.framework/Resources/GoogleMaps.bundle",
+				"${PODS_ROOT}/GooglePlacePicker/Frameworks/GooglePlacePicker.framework/Resources/GooglePlacePicker.bundle",
+				"${PODS_ROOT}/GooglePlaces/Frameworks/GooglePlaces.framework/Resources/GooglePlaces.bundle",
 			);
 			name = "[CP] Copy Pods Resources";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${UNLOCALIZED_RESOURCES_FOLDER_PATH}",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -377,6 +388,8 @@
 				0A4CE9C91FD56AD30035DA7C /* WireframeInput.swift in Sources */,
 				0A4CE9CB1FD570680035DA7C /* MainViewController.swift in Sources */,
 				0A4CE9C11FD56A0E0035DA7C /* HomeInteractor.swift in Sources */,
+				0A4D17031FE2725C00960459 /* WeatherForcast.swift in Sources */,
+				0A4D17071FE2886300960459 /* HomeCollectionViewCell.swift in Sources */,
 				0A85F69A1FD67FD1004B9DB4 /* Weather.swift in Sources */,
 				0A4CE9C71FD56A0E0035DA7C /* HomeViewInterface.swift in Sources */,
 				0A4CE9C01FD56A0E0035DA7C /* HomeInteractorIO.swift in Sources */,

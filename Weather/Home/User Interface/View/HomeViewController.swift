@@ -9,30 +9,34 @@
 import UIKit
 import PKHUD
 import CoreLocation
+import GooglePlaces
 
-class HomeViewController: UIViewController, CLLocationManagerDelegate {
-    // MARK: Properties
+class HomeViewController: UIViewController {
     var presenter: HomeModuleInterface?
     private let locationManager = CLLocationManager()
+    private let weatherList = [ListModel]()
     
-    // MARK: IBOutlets
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
     @IBOutlet weak var tempLabel: UILabel!
+    @IBOutlet weak var collectionView: UICollectionView!
     
-    // MARK: VC's Life cycle
     override func viewDidLoad() {
         super.viewDidLoad()
         self.setup()
     }
     
-    // MARK: IBActions
-    
-    // MARK: Other Functions
     private func setup() {
-        // all setup should be done here
+        addNavigationBarItems()
         getLocation()
         showLoading()
+        collectionView.delegate = self
+        collectionView.dataSource = self
+    }
+    
+    private func addNavigationBarItems(){
+        let add = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(addClicked(sender:)))
+        navigationItem.rightBarButtonItems = [add]
     }
     
     private func getLocation(){
@@ -42,13 +46,58 @@ class HomeViewController: UIViewController, CLLocationManagerDelegate {
         locationManager.startUpdatingLocation()
     }
     
+    @objc private func addClicked(sender: UIBarButtonItem){
+        let autocompleteController = GMSAutocompleteViewController()
+        autocompleteController.delegate = self
+        present(autocompleteController, animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
         presenter?.getWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
 }
 
-// MARK: HomeViewInterface
+extension HomeViewController: GMSAutocompleteViewControllerDelegate {
+    func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
+        presenter?.getWeather(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        dismiss(animated: true, completion: nil)
+    }
+    
+    func viewController(_ viewController: GMSAutocompleteViewController, didFailAutocompleteWithError error: Error) {
+        print("Error: \(error.localizedDescription)")
+        showToast(string: error.localizedDescription)
+    }
+    
+    func wasCancelled(_ viewController: GMSAutocompleteViewController) {
+        dismiss(animated: true, completion: nil)
+    }
+}
+
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return weatherList.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "WeatherCell", for: indexPath) as! HomeCollectionViewCell
+        
+        let weatherForcast = weatherList[indexPath.row]
+        let temp = (weatherForcast.main?.temp ?? 0) - 273.15
+        cell.textTemp?.text = "\(String(format: "%.1f", temp))°C"
+        cell.textWeather?.text = weatherForcast.weather![0].main
+        let date = weatherForcast.date
+        cell.textDay?.text = date.components(separatedBy: " ").first
+        return cell
+    }
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return 1
+    }
+}
+
 extension HomeViewController: HomeViewInterface {
     func showLoading() {
         HUD.show(.systemActivity, onView: self.view)
@@ -61,7 +110,9 @@ extension HomeViewController: HomeViewInterface {
     func populateData(data: Weather) {
         cityLabel.text = data.name
         weatherLabel.text = data.weather![0].main
-        tempLabel.text = "\(data.main?.temp ?? 0)"
+        let temp = (data.main?.temp ?? 0) - 273.15
+        tempLabel.text = "\(String(format: "%.1f", temp))°C"
+        locationManager.stopUpdatingLocation()
     }
     
     func showToast(string: String) {

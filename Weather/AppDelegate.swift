@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import GooglePlaces
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,8 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         window = UIWindow(frame: UIScreen.main.bounds)
-        window?.rootViewController = UINavigationController(rootViewController: MainViewController())
+        window?.rootViewController = UINavigationController(rootViewController: HomeWireframe().getMainView())
         window?.makeKeyAndVisible()
+        
+        GMSPlacesClient.provideAPIKey("AIzaSyCBBS1UZ6rGUs6IP5iMDv3n24IGY4F4pzU")
         
         return true
     }

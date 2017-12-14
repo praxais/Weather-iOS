@@ -11,9 +11,13 @@ import Alamofire
 import AlamofireObjectMapper
 
 class HomeService: HomeServiceType {
+    private func getUrl(latitude: Double, longitude: Double) -> String {
+        let url = "/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&APPID="
+        return ApiConstants.baseUrl + url + ApiConstants.apiKey
+    }
+    
     func getWeather(latitude: Double, longitude: Double, success: @escaping(Weather) -> (), failure: @escaping(String) -> ()) {
-        Alamofire.request("\(ApiConstants.baseUrl)/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&APPID=\(ApiConstants.apiKey)",
-            method: .get)
+        Alamofire.request(getUrl(latitude: latitude, longitude: longitude), method: .get)
             .responseObject{(response: DataResponse<Weather>) in
                 switch response.result {
                 case .success:
