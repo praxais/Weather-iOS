@@ -6,8 +6,6 @@
 //Copyright © 2017 Prajwal Maharjan. All rights reserved.
 //
 
-import Foundation
-
 protocol HomeServiceType: class {
     func getWeather(latitude: Double, longitude: Double, success: @escaping(Weather) -> (), failure: @escaping(String) -> ())
     

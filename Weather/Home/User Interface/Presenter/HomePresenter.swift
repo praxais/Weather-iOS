@@ -36,11 +36,12 @@ extension HomePresenter: HomeInteractorOutput {
         let weatherFromDb: Weather = realm.objects(Weather.self).first!
         print("Xais: \(String(describing: weatherFromDb.id))")
         view?.populateData(data: weather)
+        interactor?.getForcast(latitude: latitude, longitude: longitude)
     }
     
     func onForcastSuccess(forcast: [ListModel]) {
-        interactor?.getForcast(latitude: latitude, longitude: longitude)
         view?.hideLoading()
+        view?.populateForcastData(forcastList: forcast)
     }
     
     func onFailure(error: String) {

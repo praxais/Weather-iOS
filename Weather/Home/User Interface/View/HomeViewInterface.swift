@@ -13,5 +13,7 @@ protocol HomeViewInterface: class {
     
     func populateData(data: Weather)
     
+    func populateForcastData(forcastList: [ListModel])
+    
     func showToast(string: String)
 }

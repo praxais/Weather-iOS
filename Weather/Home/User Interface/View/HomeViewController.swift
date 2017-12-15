@@ -14,7 +14,7 @@ import GooglePlaces
 class HomeViewController: UIViewController {
     var presenter: HomeModuleInterface?
     private let locationManager = CLLocationManager()
-    private let weatherList = [ListModel]()
+    private var weatherList = [ListModel]()
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -32,6 +32,13 @@ class HomeViewController: UIViewController {
         showLoading()
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        let flowLayout = UICollectionViewFlowLayout()
+        flowLayout.itemSize = CGSize(width: UIScreen.main.bounds.width/3 - 10, height: 94)
+        flowLayout.sectionInset = UIEdgeInsetsMake(0, 5, 0, 5)
+        flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
+        flowLayout.minimumInteritemSpacing = 0.0
+        collectionView.collectionViewLayout = flowLayout
     }
     
     private func addNavigationBarItems(){
@@ -63,6 +70,7 @@ extension HomeViewController: CLLocationManagerDelegate {
 extension HomeViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         presenter?.getWeather(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
+        print("Latitude: \(place.coordinate.latitude) \nLongitude: \(place.coordinate.longitude)")
         dismiss(animated: true, completion: nil)
     }
     
@@ -115,7 +123,14 @@ extension HomeViewController: HomeViewInterface {
         locationManager.stopUpdatingLocation()
     }
     
+    func populateForcastData(forcastList: [ListModel]) {
+        self.weatherList = forcastList
+        self.collectionView.reloadData()
+    }
+    
     func showToast(string: String) {
         HUD.flash(.label(string), delay: 1.0)
     }
+    
+    
 }

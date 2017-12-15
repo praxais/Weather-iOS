@@ -9,15 +9,11 @@
 import Foundation
 import Alamofire
 import AlamofireObjectMapper
+import RealmSwift
 
 class HomeService: HomeServiceType {
-    private func getUrl(latitude: Double, longitude: Double) -> String {
-        let url = "/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&APPID="
-        return ApiConstants.baseUrl + url + ApiConstants.apiKey
-    }
-    
     func getWeather(latitude: Double, longitude: Double, success: @escaping(Weather) -> (), failure: @escaping(String) -> ()) {
-        Alamofire.request(getUrl(latitude: latitude, longitude: longitude), method: .get)
+        Alamofire.request(ApiConstants.getWeatherUrl(latitude: latitude, longitude: longitude), method: .get)
             .responseObject{(response: DataResponse<Weather>) in
                 switch response.result {
                 case .success:
@@ -31,11 +27,12 @@ class HomeService: HomeServiceType {
     }
     
     func getForcast(latitude: Double, longitude: Double, success: @escaping ([ListModel]) -> (), failure: @escaping (String) -> ()) {
-        Alamofire.request(getUrl(latitude: latitude, longitude: longitude), method: .get)
+        Alamofire.request(ApiConstants.getForecastUrl(latitude: latitude, longitude: longitude), method: .get)
             .responseObject{(response: DataResponse<WeatherForcast>) in
                 switch response.result {
                 case .success:
-                    success(response.result.value!.list!)
+                    let listModel: List<ListModel> = (response.result.value?.list)!
+                    success(Array(listModel))
                     break
                 case .failure:
                     failure(response.error.debugDescription)

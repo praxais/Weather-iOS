@@ -11,4 +11,14 @@ class ApiConstants {
     static let apiKey = "434d1145e31b7937aaa94e2faff65d0d"
     
     static let statusOk = 200
+    
+    static func getWeatherUrl(latitude: Double, longitude: Double) -> String {
+        let url = "/data/2.5/weather?lat=\(latitude)&lon=\(longitude)&APPID="
+        return ApiConstants.baseUrl + url + ApiConstants.apiKey
+    }
+    
+    static func getForecastUrl(latitude: Double, longitude: Double) -> String {
+        let url = "/data/2.5/forecast?lat=\(latitude)&lon=\(longitude)&APPID="
+        return ApiConstants.baseUrl + url + ApiConstants.apiKey
+    }
 }

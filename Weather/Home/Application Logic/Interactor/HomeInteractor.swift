@@ -18,8 +18,6 @@ class HomeInteractor {
     init(service: HomeServiceType) {
         self.service = service
     }
-
-    // MARK: Converting entities
 }
 
 // MARK: Home interactor input interface
@@ -29,6 +27,16 @@ extension HomeInteractor: HomeInteractorInput {
             (weather) in
             self.saveWeatherToDb(weather: weather)
             self.output?.onWeatherSuccess(weather: weather)
+        }, failure: {
+            (failure) in
+            self.output?.onFailure(error: failure)
+        })
+    }
+    
+    func getForcast(latitude: Double, longitude: Double) {
+        service.getForcast(latitude: latitude, longitude: longitude, success: {
+            (success) in
+            self.output?.onForcastSuccess(forcast: success)
         }, failure: {
             (failure) in
             self.output?.onFailure(error: failure)
