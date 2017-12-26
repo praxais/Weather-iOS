@@ -34,6 +34,8 @@
 		0A85F69A1FD67FD1004B9DB4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A85F6991FD67FD1004B9DB4 /* Weather.swift */; };
 		0A8E89F01FECFFF200F09A40 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */; };
 		0A8E89F31FED205900F09A40 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E89F21FED205900F09A40 /* GoogleMapViewController.swift */; };
+		0A93A6BE1FF2168B00A84C91 /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0A93A6BD1FF2168B00A84C91 /* MapKit.framework */; };
+		0A93A6E11FF258C300A84C91 /* CustomViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A93A6E01FF258C300A84C91 /* CustomViewController.swift */; };
 		45F90F3C30AAFEE4736A3F9D /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DC18B61E39B66DD15786BA /* Pods_Weather.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,8 +67,10 @@
 		0A85F6931FD67983004B9DB4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A85F6961FD67E3E004B9DB4 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		0A85F6991FD67FD1004B9DB4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
-		0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FacebookViewController.swift; path = Facebook/FacebookViewController.swift; sourceTree = "<group>"; };
+		0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookViewController.swift; sourceTree = "<group>"; };
 		0A8E89F21FED205900F09A40 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
+		0A93A6BD1FF2168B00A84C91 /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
+		0A93A6E01FF258C300A84C91 /* CustomViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomViewController.swift; sourceTree = "<group>"; };
 		5638E26E99CC8516415D0EEC /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		B9DC18B61E39B66DD15786BA /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8951B9F322EEA92C04967A /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
@@ -78,6 +82,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				0A4A36F31FD6AB9F00E0A37D /* CoreLocation.framework in Frameworks */,
+				0A93A6BE1FF2168B00A84C91 /* MapKit.framework in Frameworks */,
 				45F90F3C30AAFEE4736A3F9D /* Pods_Weather.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -106,10 +111,8 @@
 		0A4CE98D1FD569960035DA7C /* Weather */ = {
 			isa = PBXGroup;
 			children = (
-				0A8E89F11FED204000F09A40 /* Map */,
 				0A85F6981FD67FAC004B9DB4 /* Model */,
 				0A85F6951FD67E22004B9DB4 /* Utils */,
-				0A4CE9A81FD56A0E0035DA7C /* Home */,
 				0A4CE98E1FD569960035DA7C /* AppDelegate.swift */,
 				0A4CE9C81FD56AD30035DA7C /* WireframeInput.swift */,
 				0A4CE9971FD569960035DA7C /* Assets.xcassets */,
@@ -118,7 +121,9 @@
 				0A4CE99C1FD569960035DA7C /* Info.plist */,
 				0A4CE9CA1FD570680035DA7C /* MainViewController.swift */,
 				0A7546F01FE3BF54005A9480 /* Detail */,
-				0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */,
+				0A4CE9A81FD56A0E0035DA7C /* Home */,
+				0A93A6B71FF2029600A84C91 /* Facebook */,
+				0A8E89F11FED204000F09A40 /* GoogleMap */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -201,6 +206,7 @@
 				0A4CE9BA1FD56A0E0035DA7C /* Home.storyboard */,
 				0A4CE9BB1FD56A0E0035DA7C /* HomeViewController.swift */,
 				0A4CE9BC1FD56A0E0035DA7C /* HomeViewInterface.swift */,
+				0A93A6E01FF258C300A84C91 /* CustomViewController.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -241,17 +247,27 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		0A8E89F11FED204000F09A40 /* Map */ = {
+		0A8E89F11FED204000F09A40 /* GoogleMap */ = {
 			isa = PBXGroup;
 			children = (
 				0A8E89F21FED205900F09A40 /* GoogleMapViewController.swift */,
 			);
-			path = Map;
+			path = GoogleMap;
+			sourceTree = "<group>";
+		};
+		0A93A6B71FF2029600A84C91 /* Facebook */ = {
+			isa = PBXGroup;
+			children = (
+				0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */,
+			);
+			name = Facebook;
+			path = "New Group";
 			sourceTree = "<group>";
 		};
 		10C4FAF84761EDA730C668D7 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				0A93A6BD1FF2168B00A84C91 /* MapKit.framework */,
 				0A4A36F21FD6AB9F00E0A37D /* CoreLocation.framework */,
 				B9DC18B61E39B66DD15786BA /* Pods_Weather.framework */,
 			);
@@ -303,6 +319,11 @@
 					0A4CE98A1FD569960035DA7C = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
+						SystemCapabilities = {
+							com.apple.Maps.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -424,6 +445,7 @@
 			files = (
 				0A4CE9BF1FD56A0E0035DA7C /* HomeService.swift in Sources */,
 				0A85F6971FD67E3E004B9DB4 /* ApiConstants.swift in Sources */,
+				0A93A6E11FF258C300A84C91 /* CustomViewController.swift in Sources */,
 				0A8E89F01FECFFF200F09A40 /* FacebookViewController.swift in Sources */,
 				0A4CE9BD1FD56A0E0035DA7C /* HomeModuleInterface.swift in Sources */,
 				0A29B9C01FE3DBED00BEA1B1 /* DetailTableViewCellDelegate.swift in Sources */,

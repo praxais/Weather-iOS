@@ -4,6 +4,8 @@
 <dict>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
+	<key>CFBundleDocumentTypes</key>
+	<array/>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -36,7 +38,7 @@
 	<key>LSApplicationQueriesSchemes</key>
 	<array>
 		<string>fbapi</string>
-		<string>fb-messenger-share-api</string>
+		<string>fb-messenger-api</string>
 		<string>fbauth2</string>
 		<string>fbshareextension</string>
 	</array>
@@ -80,17 +82,5 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>googlechromes</string>
-        <string>comgooglemaps</string>
-    </array>
-    <key>LSApplicationQueriesSchemes</key>
-    <array>
-        <string>fbapi</string>
-        <string>fb-messenger-api</string>
-        <string>fbauth2</string>
-        <string>fbshareextension</string>
-    </array>
 </dict>
 </plist>

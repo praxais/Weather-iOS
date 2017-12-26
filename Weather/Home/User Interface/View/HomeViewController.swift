@@ -17,6 +17,7 @@ class HomeViewController: UIViewController {
     private var weatherList = [ListModel]()
     private var latitude: Double? = nil
     private var longitude: Double? = nil
+    private var markerTitle: String? = nil
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -42,10 +43,15 @@ class HomeViewController: UIViewController {
         flowLayout.minimumInteritemSpacing = 0.0
         collectionView.collectionViewLayout = flowLayout
         
-        //add tab listener
+        //add cityLabel tap listener
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
         cityLabel.isUserInteractionEnabled = true
         cityLabel.addGestureRecognizer(tap)
+        
+        //add search tab listener
+        let tempTap = UITapGestureRecognizer(target: self, action: #selector(self.tempClicked))
+        tempLabel.isUserInteractionEnabled = true
+        tempLabel.addGestureRecognizer(tempTap)
     }
     
     private func addNavigationBarItems(){
@@ -74,12 +80,27 @@ class HomeViewController: UIViewController {
     }
     
     @objc func tapFunction(sender:UITapGestureRecognizer) {
-        //open Map Screen
+        //open Google Map Screen
         let mapViewController = GoogleMapViewController()
-        
         mapViewController.latitude = latitude
         mapViewController.longitude = longitude
+        mapViewController.markerTitle = markerTitle
         navigationController?.pushViewController(mapViewController, animated: true)
+    }
+    
+    @objc func tempClicked(sender:UITapGestureRecognizer) {
+        // create the alert
+        let alert = UIAlertController(title: nil, message: "This is my message.", preferredStyle: UIAlertControllerStyle.alert)
+        
+        // add an action (button)
+        alert.addAction(UIAlertAction(title: "Ok", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: nil))
+        alert.addAction(UIAlertAction(title: "Third", style: .default, handler: { action in
+            print("Third clicked")
+        }))
+        
+        // show the alert
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
@@ -98,6 +119,7 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
         print("Latitude: \(place.coordinate.latitude) \nLongitude: \(place.coordinate.longitude)")
         self.latitude = place.coordinate.latitude
         self.longitude = place.coordinate.longitude
+        self.markerTitle = place.name
         dismiss(animated: true, completion: nil)
     }
     
@@ -148,6 +170,7 @@ extension HomeViewController: HomeViewInterface {
         let temp = (data.main?.temp ?? 0) - 273.15
         tempLabel.text = "\(String(format: "%.1f", temp))°C"
         locationManager.stopUpdatingLocation()
+        markerTitle = data.name
     }
     
     func populateForcastData(forcastList: [ListModel]) {
