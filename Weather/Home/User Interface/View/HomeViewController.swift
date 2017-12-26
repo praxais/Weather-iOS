@@ -15,6 +15,8 @@ class HomeViewController: UIViewController {
     var presenter: HomeModuleInterface?
     private let locationManager = CLLocationManager()
     private var weatherList = [ListModel]()
+    private var latitude: Double? = nil
+    private var longitude: Double? = nil
     
     @IBOutlet weak var cityLabel: UILabel!
     @IBOutlet weak var weatherLabel: UILabel!
@@ -39,11 +41,17 @@ class HomeViewController: UIViewController {
         flowLayout.scrollDirection = UICollectionViewScrollDirection.horizontal
         flowLayout.minimumInteritemSpacing = 0.0
         collectionView.collectionViewLayout = flowLayout
+        
+        //add tab listener
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.tapFunction))
+        cityLabel.isUserInteractionEnabled = true
+        cityLabel.addGestureRecognizer(tap)
     }
     
     private func addNavigationBarItems(){
         let add = UIBarButtonItem(barButtonSystemItem: .search, target: self, action: #selector(addClicked(sender:)))
-        navigationItem.rightBarButtonItems = [add]
+        let facebook = UIBarButtonItem(title: "Login", style: .done, target: self, action: #selector(facebookClicked(sender:)))
+        navigationItem.rightBarButtonItems = [add, facebook]
     }
     
     private func getLocation(){
@@ -58,11 +66,28 @@ class HomeViewController: UIViewController {
         autocompleteController.delegate = self
         present(autocompleteController, animated: true, completion: nil)
     }
+    
+    @objc private func facebookClicked(sender: UIBarButtonItem){
+        let facebookViewController = FacebookViewController()
+        facebookViewController.view.backgroundColor = .white
+        navigationController?.pushViewController(facebookViewController, animated: true)
+    }
+    
+    @objc func tapFunction(sender:UITapGestureRecognizer) {
+        //open Map Screen
+        let mapViewController = GoogleMapViewController()
+        
+        mapViewController.latitude = latitude
+        mapViewController.longitude = longitude
+        navigationController?.pushViewController(mapViewController, animated: true)
+    }
 }
 
 extension HomeViewController: CLLocationManagerDelegate {
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
         let location = locations[0]
+        self.latitude = location.coordinate.latitude
+        self.longitude = location.coordinate.longitude
         presenter?.getWeather(latitude: location.coordinate.latitude, longitude: location.coordinate.longitude)
     }
 }
@@ -71,6 +96,8 @@ extension HomeViewController: GMSAutocompleteViewControllerDelegate {
     func viewController(_ viewController: GMSAutocompleteViewController, didAutocompleteWith place: GMSPlace) {
         presenter?.getWeather(latitude: place.coordinate.latitude, longitude: place.coordinate.longitude)
         print("Latitude: \(place.coordinate.latitude) \nLongitude: \(place.coordinate.longitude)")
+        self.latitude = place.coordinate.latitude
+        self.longitude = place.coordinate.longitude
         dismiss(animated: true, completion: nil)
     }
     
@@ -131,6 +158,4 @@ extension HomeViewController: HomeViewInterface {
     func showToast(string: String) {
         HUD.flash(.label(string), delay: 1.0)
     }
-    
-    
 }

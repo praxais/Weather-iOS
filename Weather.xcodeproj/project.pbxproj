@@ -32,6 +32,8 @@
 		0A85F6941FD67983004B9DB4 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 0A85F6931FD67983004B9DB4 /* Main.storyboard */; };
 		0A85F6971FD67E3E004B9DB4 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A85F6961FD67E3E004B9DB4 /* ApiConstants.swift */; };
 		0A85F69A1FD67FD1004B9DB4 /* Weather.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A85F6991FD67FD1004B9DB4 /* Weather.swift */; };
+		0A8E89F01FECFFF200F09A40 /* FacebookViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */; };
+		0A8E89F31FED205900F09A40 /* GoogleMapViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0A8E89F21FED205900F09A40 /* GoogleMapViewController.swift */; };
 		45F90F3C30AAFEE4736A3F9D /* Pods_Weather.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B9DC18B61E39B66DD15786BA /* Pods_Weather.framework */; };
 /* End PBXBuildFile section */
 
@@ -63,6 +65,8 @@
 		0A85F6931FD67983004B9DB4 /* Main.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Main.storyboard; sourceTree = "<group>"; };
 		0A85F6961FD67E3E004B9DB4 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
 		0A85F6991FD67FD1004B9DB4 /* Weather.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Weather.swift; sourceTree = "<group>"; };
+		0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = FacebookViewController.swift; path = Facebook/FacebookViewController.swift; sourceTree = "<group>"; };
+		0A8E89F21FED205900F09A40 /* GoogleMapViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoogleMapViewController.swift; sourceTree = "<group>"; };
 		5638E26E99CC8516415D0EEC /* Pods-Weather.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.debug.xcconfig"; sourceTree = "<group>"; };
 		B9DC18B61E39B66DD15786BA /* Pods_Weather.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Weather.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		DD8951B9F322EEA92C04967A /* Pods-Weather.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Weather.release.xcconfig"; path = "Pods/Target Support Files/Pods-Weather/Pods-Weather.release.xcconfig"; sourceTree = "<group>"; };
@@ -102,6 +106,7 @@
 		0A4CE98D1FD569960035DA7C /* Weather */ = {
 			isa = PBXGroup;
 			children = (
+				0A8E89F11FED204000F09A40 /* Map */,
 				0A85F6981FD67FAC004B9DB4 /* Model */,
 				0A85F6951FD67E22004B9DB4 /* Utils */,
 				0A4CE9A81FD56A0E0035DA7C /* Home */,
@@ -113,6 +118,7 @@
 				0A4CE99C1FD569960035DA7C /* Info.plist */,
 				0A4CE9CA1FD570680035DA7C /* MainViewController.swift */,
 				0A7546F01FE3BF54005A9480 /* Detail */,
+				0A8E89EF1FECFFF200F09A40 /* FacebookViewController.swift */,
 			);
 			path = Weather;
 			sourceTree = "<group>";
@@ -233,6 +239,14 @@
 				0A4D17021FE2725C00960459 /* WeatherForcast.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		0A8E89F11FED204000F09A40 /* Map */ = {
+			isa = PBXGroup;
+			children = (
+				0A8E89F21FED205900F09A40 /* GoogleMapViewController.swift */,
+			);
+			path = Map;
 			sourceTree = "<group>";
 		};
 		10C4FAF84761EDA730C668D7 /* Frameworks */ = {
@@ -373,6 +387,9 @@
 				"${BUILT_PRODUCTS_DIR}/Alamofire/Alamofire.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireImage/AlamofireImage.framework",
 				"${BUILT_PRODUCTS_DIR}/AlamofireObjectMapper/AlamofireObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/Bolts/Bolts.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKCoreKit/FBSDKCoreKit.framework",
+				"${BUILT_PRODUCTS_DIR}/FBSDKLoginKit/FBSDKLoginKit.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
 				"${BUILT_PRODUCTS_DIR}/ObjectMapper+Realm/ObjectMapper_Realm.framework",
 				"${BUILT_PRODUCTS_DIR}/PKHUD/PKHUD.framework",
@@ -384,6 +401,9 @@
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Alamofire.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireImage.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AlamofireObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Bolts.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKCoreKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/FBSDKLoginKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper_Realm.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PKHUD.framework",
@@ -404,6 +424,7 @@
 			files = (
 				0A4CE9BF1FD56A0E0035DA7C /* HomeService.swift in Sources */,
 				0A85F6971FD67E3E004B9DB4 /* ApiConstants.swift in Sources */,
+				0A8E89F01FECFFF200F09A40 /* FacebookViewController.swift in Sources */,
 				0A4CE9BD1FD56A0E0035DA7C /* HomeModuleInterface.swift in Sources */,
 				0A29B9C01FE3DBED00BEA1B1 /* DetailTableViewCellDelegate.swift in Sources */,
 				0A4CE9C91FD56AD30035DA7C /* WireframeInput.swift in Sources */,
@@ -421,6 +442,7 @@
 				0A4CE9BE1FD56A0E0035DA7C /* HomeServiceType.swift in Sources */,
 				0A4CE9C41FD56A0E0035DA7C /* HomeWireframe.swift in Sources */,
 				0A4CE9C61FD56A0E0035DA7C /* HomeViewController.swift in Sources */,
+				0A8E89F31FED205900F09A40 /* GoogleMapViewController.swift in Sources */,
 				0A29B9BE1FE3C6EA00BEA1B1 /* DetailTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -554,7 +576,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NA24AKFP53;
 				INFOPLIST_FILE = Weather/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xais.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -571,7 +593,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = NA24AKFP53;
 				INFOPLIST_FILE = Weather/Info.plist;
-				IPHONEOS_DEPLOYMENT_TARGET = 10.3;
+				IPHONEOS_DEPLOYMENT_TARGET = 11.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.xais.Weather;
 				PRODUCT_NAME = "$(TARGET_NAME)";
